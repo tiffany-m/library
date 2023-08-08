@@ -20,7 +20,12 @@ console.log(myLibrary);
 let book = document.createElement("div");
 for (let i = 0; i < myLibrary.length; i++) {
     let book = document.createElement("div");
-    book.textContent = `Author: ${myLibrary.author}, Title: ${myLibrary[i].title}, Number of Pages: ${myLibrary[i].numPages}, Read: ${myLibrary[i].read}`
+    book.innerHTML = `
+    ${i + 1}. <br>
+    Author: ${myLibrary.author}  <br>
+    Title: ${myLibrary[i].title} <br>
+    Number of Pages: ${myLibrary[i].numPages} <br>
+    Read: ${myLibrary[i].read}`
     libraryContainer.appendChild(book);
 }
 

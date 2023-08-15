@@ -5,6 +5,8 @@ const formAuthor = document.getElementById('author');
 const formTitle = document.getElementById('title');
 const formNumPages = document.getElementById('num-pages');
 const formRead = document.getElementById('read');
+const modal = document.getElementById('modal');
+const openModalBtn = document.getElementById('open-modal-btn');
 
 let myLibrary = [];
 
@@ -21,6 +23,9 @@ let book2 = new Book("Justin", "Planting Herbs", 389, "not read");
 myLibrary.push(book1);
 myLibrary.push(book2);
 
+openModalBtn.addEventListener('click', () => {
+    modal.showModal();
+})
 
 function displayBooks() {
     for (let i = 0; i < myLibrary.length; i++) {
@@ -44,6 +49,7 @@ newBookBtn.addEventListener("click", (e) => {
     console.log(myLibrary)
     libraryDisplay.innerHTML = '';  // Clear out the current books
     displayBooks();
+    modal.close();
 })
 
     displayBooks();

@@ -1,4 +1,11 @@
-let libraryContainer = document.getElementById('library-container')
+const libraryContainer = document.getElementById('library-container');
+const newBookBtn = document.getElementById('new-book-btn');
+let data = document.querySelectorAll('input');
+let newData = [];
+// const formAuthor = document.getElementById('author');
+// const formTitle = document.getElementById('title');
+// const formNumPages = document.getElementById('num-pages');
+// const formRead = document.getElementById('read');
 
 let myLibrary = [];
 
@@ -15,21 +22,29 @@ let book2 = new Book("Justin", "Planting Herbs", 389, "not read");
 myLibrary.push(book1);
 myLibrary.push(book2);
 
-console.log(myLibrary);
-
 let book = document.createElement("div");
-for (let i = 0; i < myLibrary.length; i++) {
-    let book = document.createElement("div");
-    book.innerHTML = `
+function addBookToLibrary() {
+    for (let i = 0; i < myLibrary.length; i++) {
+        book = document.createElement("div");
+        book.innerHTML = `
     ${i + 1}. <br>
-    Author: ${myLibrary.author}  <br>
+    Author: ${myLibrary[i].author}  <br>
     Title: ${myLibrary[i].title} <br>
     Number of Pages: ${myLibrary[i].numPages} <br>
     Read: ${myLibrary[i].read}`
-    libraryContainer.appendChild(book);
+        libraryContainer.appendChild(book);
+    }
 }
 
+newBookBtn.addEventListener("click", (e) => {
+    let book = []
+    e.preventDefault();
+    newData = Array.from(data)
+    book = Book(newData[0].value, newData[1], newData[2], newData[3])
+    console.log(newData)
+    myLibrary.push(book);
+    addBookToLibrary();
+})
 
-function addBookToLibrary() {
-    // do stuff here
-}
+
+console.log(data[0].textContent)

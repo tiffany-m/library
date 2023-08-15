@@ -1,4 +1,4 @@
-const libraryContainer = document.getElementById('library-container');
+const libraryDisplay = document.getElementById('library-display');
 const newBookBtn = document.getElementById('new-book-btn');
 let data = document.querySelectorAll('input');
 const formAuthor = document.getElementById('author');
@@ -21,16 +21,18 @@ let book2 = new Book("Justin", "Planting Herbs", 389, "not read");
 myLibrary.push(book1);
 myLibrary.push(book2);
 
-let book = document.createElement("div");
+
 function displayBooks() {
     for (let i = 0; i < myLibrary.length; i++) {
+        let book = document.createElement("div");
+
         book.innerHTML = `
             ${i + 1}. <br>
             Author: ${myLibrary[i].author}  <br>
             Title: ${myLibrary[i].title} <br>
             Number of Pages: ${myLibrary[i].numPages} <br>
             Read: ${myLibrary[i].read}`
-        libraryContainer.appendChild(book);
+        libraryDisplay.appendChild(book);
     }
 }
 
@@ -40,30 +42,8 @@ newBookBtn.addEventListener("click", (e) => {
     let bookInfo = new Book(`${formAuthor.value}`, `${formTitle.value}`, `${formNumPages.value}`, `${formRead.value}`);
     myLibrary.push(bookInfo);
     console.log(myLibrary)
+    libraryDisplay.innerHTML = '';  // Clear out the current books
     displayBooks();
-
 })
 
-
-
-
-// let data = document.querySelectorAll('input');
-// let newData = [];
-
-// let book = document.createElement("div");
-// function addBookToLibrary() {
-//     for (let i = 0; i < myLibrary.length; i++) {
-//         book = document.createElement("div");
-//         book.innerHTML = `
-//     ${i + 1}. <br>
-//     Author: ${myLibrary[i].author}  <br>
-//     Title: ${myLibrary[i].title} <br>
-//     Number of Pages: ${myLibrary[i].numPages} <br>
-//     Read: ${myLibrary[i].read}`
-//         libraryContainer.appendChild(book);
-//     }
-// }
-
-
-
-// console.log(data[0].textContent)
+    displayBooks();

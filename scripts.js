@@ -7,6 +7,8 @@ const formNumPages = document.getElementById('num-pages');
 const formRead = document.getElementById('read');
 const modal = document.getElementById('modal');
 const openModalBtn = document.getElementById('open-modal-btn');
+let deleteBtn = document.querySelector('.delete-btn');
+const readBtn = document.getElementById('read-btn')
 
 let myLibrary = [];
 
@@ -36,20 +38,31 @@ function displayBooks() {
             Author: ${myLibrary[i].author}  <br>
             Title: ${myLibrary[i].title} <br>
             Number of Pages: ${myLibrary[i].numPages} <br>
-            Read: ${myLibrary[i].read}`
+            <button id="read-btn">Read</button>
+            <button class="delete-btn">Delete</button>`
+        book.setAttribute("data-number", myLibrary.indexOf(myLibrary[i]))
+        book.setAttribute("class", "book")
         libraryDisplay.appendChild(book);
     }
+    deleteBtn = document.querySelectorAll('.delete-btn'); // Requery after adding a book
+
+    deleteBtn.forEach(button => {
+        button.addEventListener("click", (e) => {
+            const bookIndex = e.target.parentElement.getAttribute("data-number");
+            myLibrary.splice(bookIndex, 1);
+            libraryDisplay.innerHTML = '';  // Clear out the current books
+            displayBooks();
+        });
+    });
 }
 
 newBookBtn.addEventListener("click", (e) => {
     e.preventDefault(); // prevent form from submitting
     console.log(formAuthor.value, formTitle.value, formNumPages.value)
-    let bookInfo = new Book(`${formAuthor.value}`, `${formTitle.value}`, `${formNumPages.value}`, `${formRead.value}`);
+    let bookInfo = new Book(`${formAuthor.value}`, `${formTitle.value}`, `${formNumPages.value}`);
     myLibrary.push(bookInfo);
     console.log(myLibrary)
     libraryDisplay.innerHTML = '';  // Clear out the current books
     displayBooks();
     modal.close();
 })
-
-    displayBooks();

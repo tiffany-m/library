@@ -7,8 +7,8 @@ const formNumPages = document.getElementById('num-pages');
 const formRead = document.getElementById('read');
 const modal = document.getElementById('modal');
 const openModalBtn = document.getElementById('open-modal-btn');
-let deleteBtn = document.querySelector('.delete-btn');
-const readBtn = document.getElementById('read-btn')
+let deleteBtn = document.querySelectorAll('.delete-btn');
+let readBtn = document.querySelectorAll('.read-btn')
 
 let myLibrary = [];
 
@@ -19,8 +19,8 @@ function Book(author, title, numPages, read) {
     this.read = read
 }
 
-let book1 = new Book("Tiffany", "How To Plants", 127, "read");
-let book2 = new Book("Justin", "Planting Herbs", 389, "not read");
+let book1 = new Book("Tiffany", "How To Plants", 127, "Read");
+let book2 = new Book("Justin", "Planting Herbs", 389, "Not Read");
 
 myLibrary.push(book1);
 myLibrary.push(book2);
@@ -38,7 +38,7 @@ function displayBooks() {
             Author: ${myLibrary[i].author}  <br>
             Title: ${myLibrary[i].title} <br>
             Number of Pages: ${myLibrary[i].numPages} <br>
-            <button id="read-btn">Read</button>
+            <button class="read-btn">${myLibrary[i].read}</button>
             <button class="delete-btn">Delete</button>`
         book.setAttribute("data-number", myLibrary.indexOf(myLibrary[i]))
         book.setAttribute("class", "book")
@@ -54,12 +54,26 @@ function displayBooks() {
             displayBooks();
         });
     });
+
+    readBtn = document.querySelectorAll('.read-btn')
+
+    readBtn.forEach(button => {
+        button.addEventListener("click", (e) => {
+            const readValue = button.innerText
+            if (readValue == "Read") {
+                button.innerText = "Not Read";
+            }
+            else if (readValue == "Not Read") {
+                button.innerText = "Read";
+            }
+        })
+    })
 }
 
 newBookBtn.addEventListener("click", (e) => {
     e.preventDefault(); // prevent form from submitting
-    console.log(formAuthor.value, formTitle.value, formNumPages.value)
-    let bookInfo = new Book(`${formAuthor.value}`, `${formTitle.value}`, `${formNumPages.value}`);
+    console.log(formRead.value)
+    let bookInfo = new Book(`${formAuthor.value}`, `${formTitle.value}`, `${formNumPages.value}`, `${formRead.value}`);
     myLibrary.push(bookInfo);
     console.log(myLibrary)
     libraryDisplay.innerHTML = '';  // Clear out the current books

@@ -1,15 +1,11 @@
 const libraryDisplay = document.getElementById('library-display');
-const newBookBtn = document.getElementById('new-book-btn');
-let data = document.querySelectorAll('input');
+const submit = document.getElementById('submit');
+const addNewBookBtn = document.getElementById('add-new-book-btn');
 const formAuthor = document.getElementById('author');
 const formTitle = document.getElementById('title');
 const formNumPages = document.getElementById('num-pages');
 const formRead = document.getElementById('read');
 const modal = document.getElementById('modal');
-const openModalBtn = document.getElementById('open-modal-btn');
-let deleteBtn = document.querySelectorAll('.delete-btn');
-let readBtn = document.querySelectorAll('.read-btn')
-
 let myLibrary = [];
 
 function Book(author, title, numPages, read) {
@@ -19,14 +15,10 @@ function Book(author, title, numPages, read) {
     this.read = read
 }
 
-openModalBtn.addEventListener('click', () => {
-    modal.showModal();
-})
-
 function displayBooks() {
+    // create new div with book added
     for (let i = 0; i < myLibrary.length; i++) {
         let book = document.createElement("div");
-
         book.innerHTML = `
             ${i + 1}. <br>
             Author: ${myLibrary[i].author}  <br>
@@ -38,19 +30,20 @@ function displayBooks() {
         book.setAttribute("class", "book")
         libraryDisplay.appendChild(book);
     }
-    deleteBtn = document.querySelectorAll('.delete-btn'); // Requery after adding a book
 
+    // delete button
+    let deleteBtn = document.querySelectorAll('.delete-btn');
     deleteBtn.forEach(button => {
         button.addEventListener("click", (e) => {
             const bookIndex = e.target.parentElement.getAttribute("data-number");
             myLibrary.splice(bookIndex, 1);
-            libraryDisplay.innerHTML = '';  // Clear out the current books
+            libraryDisplay.innerHTML = '';
             displayBooks();
         });
     });
 
-    readBtn = document.querySelectorAll('.read-btn')
-
+    // read button
+    let readBtn = document.querySelectorAll('.read-btn')
     readBtn.forEach(button => {
         button.addEventListener("click", (e) => {
             const readValue = button.innerText
@@ -64,11 +57,15 @@ function displayBooks() {
     })
 }
 
-newBookBtn.addEventListener("click", (e) => {
+addNewBookBtn.addEventListener('click', () => {
+    modal.showModal();
+})
+
+submit.addEventListener("click", (e) => {
     e.preventDefault(); // prevent form from submitting
-    let bookInfo = new Book(`${formAuthor.value}`, `${formTitle.value}`, `${formNumPages.value}`, `${formRead.value}`);
+    let bookInfo = new Book(formAuthor.value, formTitle.value, formNumPages.value, formRead.value);
     myLibrary.push(bookInfo);
-    libraryDisplay.innerHTML = '';  // Clear out the current books
+    libraryDisplay.innerHTML = '';
     displayBooks();
     modal.close();
 })

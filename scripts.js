@@ -1,10 +1,12 @@
 const libraryDisplay = document.getElementById('library-display');
 const submit = document.getElementById('submit');
 const addNewBookBtn = document.getElementById('add-new-book-btn');
-const formAuthor = document.getElementById('author');
-const formTitle = document.getElementById('title');
-const formNumPages = document.getElementById('num-pages');
-const formRead = document.getElementById('read');
+const form = {
+    author: document.getElementById('author'),
+    title: document.getElementById('title'),
+    numPages: document.getElementById('num-pages'),
+    read: document.getElementById('read')
+};
 const modal = document.getElementById('modal');
 let myLibrary = [];
 
@@ -15,8 +17,7 @@ function Book(author, title, numPages, read) {
     this.read = read
 }
 
-function displayBooks() {
-    // create new div with book added
+function createNewBook() {
     for (let i = 0; i < myLibrary.length; i++) {
         let book = document.createElement("div");
         book.innerHTML = `
@@ -30,19 +31,25 @@ function displayBooks() {
         book.setAttribute("class", "book")
         libraryDisplay.appendChild(book);
     }
+}
 
-    // delete button
+function clearLibraryDisplay() {
+    libraryDisplay.innerHTML = '';
+}
+
+function deleteBook() {
     let deleteBtn = document.querySelectorAll('.delete-btn');
     deleteBtn.forEach(button => {
         button.addEventListener("click", (e) => {
             const bookIndex = e.target.parentElement.getAttribute("data-number");
             myLibrary.splice(bookIndex, 1);
-            libraryDisplay.innerHTML = '';
+            clearLibraryDisplay();
             displayBooks();
         });
     });
+}
 
-    // read button
+function readBook() {
     let readBtn = document.querySelectorAll('.read-btn')
     readBtn.forEach(button => {
         button.addEventListener("click", (e) => {
@@ -57,15 +64,21 @@ function displayBooks() {
     })
 }
 
+function displayBooks() {
+    createNewBook();
+    deleteBook();
+    readBook();
+}
+
 addNewBookBtn.addEventListener('click', () => {
     modal.showModal();
 })
 
 submit.addEventListener("click", (e) => {
     e.preventDefault(); // prevent form from submitting
-    let bookInfo = new Book(formAuthor.value, formTitle.value, formNumPages.value, formRead.value);
+    let bookInfo = new Book(form.author.value, form.title.value, form.numPages.value, form.read.value);
     myLibrary.push(bookInfo);
-    libraryDisplay.innerHTML = '';
+    clearLibraryDisplay();
     displayBooks();
     modal.close();
 })

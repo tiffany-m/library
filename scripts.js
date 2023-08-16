@@ -19,12 +19,6 @@ function Book(author, title, numPages, read) {
     this.read = read
 }
 
-let book1 = new Book("Tiffany", "How To Plants", 127, "Read");
-let book2 = new Book("Justin", "Planting Herbs", 389, "Not Read");
-
-myLibrary.push(book1);
-myLibrary.push(book2);
-
 openModalBtn.addEventListener('click', () => {
     modal.showModal();
 })
@@ -72,10 +66,8 @@ function displayBooks() {
 
 newBookBtn.addEventListener("click", (e) => {
     e.preventDefault(); // prevent form from submitting
-    console.log(formRead.value)
     let bookInfo = new Book(`${formAuthor.value}`, `${formTitle.value}`, `${formNumPages.value}`, `${formRead.value}`);
     myLibrary.push(bookInfo);
-    console.log(myLibrary)
     libraryDisplay.innerHTML = '';  // Clear out the current books
     displayBooks();
     modal.close();

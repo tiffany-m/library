@@ -1,0 +1,28 @@
+/* Modal ------------------------------ */
+#modal::backdrop {
+    background-image: linear-gradient(to right, #8360c3, #0085e2, #00a0dc, #00b3bb, #2ebf91);
+    opacity: .5;
+}
+
+#modal {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+input[type="text"], input[type="number"] {
+    padding: .5rem;
+}
+
+#submit {
+    background-color: #2ebf91;
+    border: 0;
+    border-radius: 10px;
+    font-weight: bold;
+    padding: .75rem 0;
+}

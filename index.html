@@ -9,28 +9,21 @@
 </head>
 <body>
     <div id="library-container">
+        <h3>My Library</h3>
         <button id="add-new-book-btn">Add New Book</button>
         <dialog id="modal">
             <form action="/" method="GET">
+                <input type="text" id="author" placeholder="Author" minlength="2" maxlength="30">
+                <input type="text" id="title" placeholder="Title" minlength="2" maxlength="30">
+                <input type="number" id="num-pages" placeholder="Number of Pages" minlength="2" maxlength="6">
                 <div>
-                    <label for="author">Author</label>
-                    <input type="text" id="author" name="author" minlength="2" maxlength="20">
-                </div>
-                <div>
-                    <label for="title">Title</label>
-                    <input type="text" id="title" name="title" minlength="2" maxlength="20">
-                </div>
-                <div>
-                    <label for="num-pages">Number of Pages</label>
-                    <input type="text" id="num-pages" name="num-pages" minlength="2" maxlength="4">
-                </div>
-                <div>
-                    Read <br>
+                    Have you read it?
                     <select id="read">
                         <option value="Read">Read</option>
                         <option value="Not Read">Not Read</option>
-                    </select>
+                    </select> 
                 </div>
+
                 <input type="submit" id="submit">
             </form>
         </dialog>

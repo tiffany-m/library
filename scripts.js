@@ -25,8 +25,8 @@ function createNewBook() {
             Author: ${myLibrary[i].author}  <br>
             Title: ${myLibrary[i].title} <br>
             Number of Pages: ${myLibrary[i].numPages} <br>
-            <button class="read-btn">${myLibrary[i].read}</button>
-            <button class="delete-btn">Delete</button>`
+            <button class="read-btn btn">${myLibrary[i].read}</button>
+            <button class="delete-btn btn">Delete</button>`
         book.setAttribute("data-number", myLibrary.indexOf(myLibrary[i]))
         book.setAttribute("class", "book")
         libraryDisplay.appendChild(book);

@@ -15,14 +15,26 @@ form {
     gap: 1rem;
 }
 
-input[type="text"], input[type="number"] {
+input[type="text"], input[type="number"], option {
     padding: .5rem;
 }
 
-#submit {
-    background-color: #2ebf91;
+.modal-btn {
     border: 0;
     border-radius: 10px;
     font-weight: bold;
     padding: .75rem 0;
+}
+
+#submit {
+    background-color: #2ebf91;
+}
+
+#close-btn {
+    background-color: #c36086;
+}
+
+select, option {
+    margin-left: 5px;
+    height: 32px;
 }

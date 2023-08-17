@@ -10,7 +10,7 @@
 <body>
     <div id="library-container">
         <h3>My Library</h3>
-        <button id="add-new-book-btn">Add New Book</button>
+        <button id="add-new-book-btn" class="btn">Add New Book</button>
         <dialog id="modal">
             <form action="/" method="GET">
                 <input type="text" id="author" placeholder="Author" minlength="2" maxlength="30">
@@ -19,12 +19,12 @@
                 <div>
                     Have you read it?
                     <select id="read">
-                        <option value="Read">Read</option>
+                        <option value="Read">&nbsp; Read &nbsp;</option>
                         <option value="Not Read">Not Read</option>
                     </select> 
                 </div>
-
-                <input type="submit" id="submit">
+                <input type="submit" id="submit" class="modal-btn">
+                <button id="close-btn" class="modal-btn">Close</button>
             </form>
         </dialog>
         <div id="library-display">

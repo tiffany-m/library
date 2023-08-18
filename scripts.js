@@ -21,10 +21,9 @@ function createNewBook() {
     for (let i = 0; i < myLibrary.length; i++) {
         let book = document.createElement("div");
         book.innerHTML = `
-            ${i + 1}. <br>
-            Author: ${myLibrary[i].author}  <br>
-            Title: ${myLibrary[i].title} <br>
-            Number of Pages: ${myLibrary[i].numPages} <br>
+            <div><span class="book-header">Author:</span> ${myLibrary[i].author}</div>
+            <div><span class="book-header">Title:</span> ${myLibrary[i].title}</div>
+            <div><span class="book-header">Number of Pages:</span> ${myLibrary[i].numPages}</div>
             <button class="read-btn btn">${myLibrary[i].read}</button>
             <button class="delete-btn btn">Delete</button>`
         book.setAttribute("data-number", myLibrary.indexOf(myLibrary[i]))
@@ -56,9 +55,11 @@ function readBook() {
             const readValue = button.innerText
             if (readValue == "Read") {
                 button.innerText = "Not Read";
+                button.style.backgroundColor = "#2ebf91";
             }
             else if (readValue == "Not Read") {
                 button.innerText = "Read";
+                button.style.backgroundColor = "#8360c3";
             }
         })
     })

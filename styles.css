@@ -1,13 +1,16 @@
-body {
+html, body {
     margin: 0;
     padding: 0;
+    height: 100%;
+}
+#modal, .book {
+    border-radius: 7px;
 }
 
 /* Main */
 #library-container {
     background-color: rgb(236, 236, 238);
-    height: 100vh;
-    width: 100vw;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -17,7 +20,7 @@ body {
     background-color: white;
     font-family: 'Nova Round', cursive;
     font-size: 3rem;
-    padding: 1rem;
+    padding: 2rem 3rem;
 }
 
 #add-new-book-btn {
@@ -38,8 +41,8 @@ body {
 }
 
 #modal {
-    border: 1px solid black;
-    border-radius: 5px;
+    font-size: 1rem;
+    border: none;
 }
 
 form {
@@ -55,7 +58,7 @@ input[type="text"], input[type="number"], option {
 .modal-btn {
     border: 0;
     border-radius: 10px;
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: bold;
     padding: .75rem 0;
 }
@@ -71,4 +74,46 @@ input[type="text"], input[type="number"], option {
 select, option {
     margin-left: 5px;
     height: 32px;
+}
+
+/* Books ------------------------- */
+#library-display {
+    min-height: 100%;
+    display: grid;
+    grid-template: 1fr / repeat(3, 1fr);
+    row-gap: 4rem;
+    justify-items: center;
+    margin: 0 6rem 2rem 6rem;
+}
+
+.book-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.book {
+    background-color: white;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    width: 350px;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.delete-btn, .read-btn {
+    border: 0;
+    border-radius: 10px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    padding: .75rem 0;
+}
+
+.delete-btn {
+    background-color: #c36086;
+}
+
+.read-btn {
+    background-color: #8360c3;
 }

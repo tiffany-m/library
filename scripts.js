@@ -32,6 +32,14 @@ function createNewBook() {
     }
 }
 
+function clearModal() {
+    form.author.value = '';
+    form.title.value = '';
+    form.numPages.value = '';
+
+    if (form.read.value = "Not Read") form.read.value = "Read";
+}
+
 function clearLibraryDisplay() {
     libraryDisplay.innerHTML = '';
 }
@@ -73,6 +81,7 @@ function displayBooks() {
 
 addNewBookBtn.addEventListener('click', () => {
     modal.showModal();
+    clearModal();
 })
 
 submit.addEventListener("click", (e) => {

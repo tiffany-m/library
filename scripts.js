@@ -8,6 +8,7 @@ const form = {
     read: document.getElementById('read')
 };
 const modal = document.getElementById('modal');
+const closeModalBtn = document.getElementById('close-btn');
 let myLibrary = [];
 
 function Book(author, title, numPages, read) {
@@ -59,10 +60,16 @@ function deleteBook(bookElement, index) {
 addNewBookBtn.addEventListener('click', () => {
     modal.showModal();
     clearModal();
+    console.log(myLibrary)
+})
+
+closeModalBtn.addEventListener('click', (e) => {
+    e.preventDefault(); // prevents modal (dialog element in HTML) from clearning books in library when button is clicked
+    modal.close()
 })
 
 submit.addEventListener("click", (e) => {
-    e.preventDefault();
+    e.preventDefault(); // prevents form from trying to submit
     modal.close();
     let bookInfo = new Book(form.author.value, form.title.value, form.numPages.value, form.read.value);
     myLibrary.push(bookInfo);

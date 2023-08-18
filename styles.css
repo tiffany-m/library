@@ -63,7 +63,7 @@ input[type="text"], input[type="number"], option {
     padding: .75rem 0;
 }
 
-#submit {
+#submit-btn {
     background-color: #2ebf91;
 }
 

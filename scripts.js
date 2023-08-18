@@ -30,6 +30,16 @@ function addBookToDisplay(book, index) {
     bookElement.setAttribute("class", "book");
 
     let readButton = bookElement.querySelector(".read-btn");
+
+
+    if(form.read.value == "Read") {
+        readButton.style.backgroundColor = "#8360c3";
+    }
+    else  {
+        readButton.style.backgroundColor = "#2ebf91";
+    }
+
+    
     readButton.addEventListener("click", () => {
         if (readButton.innerText == "Read") {
             readButton.innerText = "Not Read";

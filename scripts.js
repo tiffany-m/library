@@ -12,71 +12,48 @@ let myLibrary = [];
 
 function Book(author, title, numPages, read) {
     this.author = author,
-    this.title = title,
-    this.numPages = numPages,
-    this.read = read
+        this.title = title,
+        this.numPages = numPages,
+        this.read = read
 }
 
-function createNewBook() {
-    for (let i = 0; i < myLibrary.length; i++) {
-        let book = document.createElement("div");
-        book.innerHTML = `
-            <div><span class="book-header">Author:</span> ${myLibrary[i].author}</div>
-            <div><span class="book-header">Title:</span> ${myLibrary[i].title}</div>
-            <div><span class="book-header">Number of Pages:</span> ${myLibrary[i].numPages}</div>
-            <button class="read-btn btn">${myLibrary[i].read}</button>
-            <button class="delete-btn btn">Delete</button>`
-        book.setAttribute("data-number", myLibrary.indexOf(myLibrary[i]))
-        book.setAttribute("class", "book")
-        libraryDisplay.appendChild(book);
-    }
+function addBookToDisplay(book, index) {
+    let bookElement = document.createElement("div");
+    bookElement.innerHTML = `
+            <div><span class="book-header">Author:</span> ${book.author}</div>
+            <div><span class="book-header">Title:</span> ${book.title}</div>
+            <div><span class="book-header">Number of Pages:</span> ${book.numPages}</div>
+            <button class="read-btn btn">${book.read}</button>
+            <button class="delete-btn btn">Delete</button>`;
+    bookElement.setAttribute("data-number", index);
+    bookElement.setAttribute("class", "book");
+
+    let readButton = bookElement.querySelector(".read-btn");
+    readButton.addEventListener("click", () => {
+        if (readButton.innerText == "Read") {
+            readButton.innerText = "Not Read";
+            readButton.style.backgroundColor = "#2ebf91";
+        }
+        else if (readButton.innerText == "Not Read") {
+            readButton.innerText = "Read";
+            readButton.style.backgroundColor = "#8360c3";
+        }
+    });
+
+    bookElement.querySelector(".delete-btn").addEventListener("click", () => deleteBook(bookElement, index));
+    libraryDisplay.appendChild(bookElement);
 }
 
 function clearModal() {
     form.author.value = '';
     form.title.value = '';
     form.numPages.value = '';
-
     if (form.read.value = "Not Read") form.read.value = "Read";
 }
 
-function clearLibraryDisplay() {
-    libraryDisplay.innerHTML = '';
-}
-
-function deleteBook() {
-    let deleteBtn = document.querySelectorAll('.delete-btn');
-    deleteBtn.forEach(button => {
-        button.addEventListener("click", (e) => {
-            const bookIndex = e.target.parentElement.getAttribute("data-number");
-            myLibrary.splice(bookIndex, 1);
-            clearLibraryDisplay();
-            displayBooks();
-        });
-    });
-}
-
-function readBook() {
-    let readBtn = document.querySelectorAll('.read-btn')
-    readBtn.forEach(button => {
-        button.addEventListener("click", (e) => {
-            const readValue = button.innerText
-            if (readValue == "Read") {
-                button.innerText = "Not Read";
-                button.style.backgroundColor = "#2ebf91";
-            }
-            else if (readValue == "Not Read") {
-                button.innerText = "Read";
-                button.style.backgroundColor = "#8360c3";
-            }
-        })
-    })
-}
-
-function displayBooks() {
-    createNewBook();
-    deleteBook();
-    readBook();
+function deleteBook(bookElement, index) {
+    myLibrary.splice(index, 1);
+    libraryDisplay.removeChild(bookElement);
 }
 
 addNewBookBtn.addEventListener('click', () => {
@@ -85,10 +62,9 @@ addNewBookBtn.addEventListener('click', () => {
 })
 
 submit.addEventListener("click", (e) => {
-    e.preventDefault(); // prevent form from submitting
+    e.preventDefault();
+    modal.close();
     let bookInfo = new Book(form.author.value, form.title.value, form.numPages.value, form.read.value);
     myLibrary.push(bookInfo);
-    clearLibraryDisplay();
-    displayBooks();
-    modal.close();
-})
+    addBookToDisplay(bookInfo, myLibrary.length - 1);
+});

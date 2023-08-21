@@ -3,8 +3,25 @@ html, body {
     padding: 0;
     height: 100%;
 }
-#modal, .book {
+
+#modal,
+.book,
+.library-header,
+#add-new-book-btn,
+.modal-btn,
+.delete-btn,
+.read-btn {
     border-radius: 7px;
+}
+
+#add-new-book-btn,
+.modal-btn,
+.delete-btn,
+.read-btn {
+    border: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: .75rem;
 }
 
 /* Main */
@@ -19,18 +36,14 @@ html, body {
 .library-header {
     background-color: white;
     font-family: 'Nova Round', cursive;
-    font-size: 3rem;
+    font-weight: bold;
+    font-size: 4rem;
     padding: 2rem 3rem;
 }
 
 #add-new-book-btn {
     background-color: #00a0dc;
     align-self: center;
-    border: 0;
-    border-radius: 10px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: .75rem;
     width: 15rem;
 }
 
@@ -38,11 +51,6 @@ html, body {
 #modal::backdrop {
     background-image: linear-gradient(to right, #8360c3, #0085e2, #00a0dc, #00b3bb, #2ebf91);
     opacity: .5;
-}
-
-#modal {
-    font-size: 1rem;
-    border: none;
 }
 
 form {
@@ -53,14 +61,6 @@ form {
 
 input[type="text"], input[type="number"], option {
     padding: .5rem;
-}
-
-.modal-btn {
-    border: 0;
-    border-radius: 10px;
-    font-size: 1.25rem;
-    font-weight: bold;
-    padding: .75rem 0;
 }
 
 #submit-btn {
@@ -100,14 +100,6 @@ select, option {
     width: 350px;
     padding: 1rem;
     gap: 1rem;
-}
-
-.delete-btn, .read-btn {
-    border: 0;
-    border-radius: 10px;
-    font-size: 1.25rem;
-    font-weight: bold;
-    padding: .75rem 0;
 }
 
 .delete-btn {
